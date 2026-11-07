@@ -41,7 +41,7 @@ Start a task with `git -C repo fetch origin`, then `git -C repo worktree add -b 
 
 ## Loop
 
-1. **Understand.** Read the request, `ASTACK.md`, the code it touches, and the project's lessons. Write the Request (verbatim) in `story.md`, then plan `evidence.md` (below). Sort every open point: observable → evidence row or spike; product call → a Decisions row with your recommended default, marked *shapes contract* when the design depends on it; an unclear request → ask now.
+1. **Understand.** Read the request, `ASTACK.md`, the code it touches, and the project's lessons. Write the Request (verbatim) in `story.md`, then plan `evidence.md` (below). Sort every open point: observable → evidence row or spike; product call → a Decisions row with your recommended default, marked *shapes contract* when the design depends on it; an unclear request → settle it from the code and history; only what the requester alone can say is a product call.
 2. **Reproduce** (bug): the claim row red on the base, with the cause. **Research** (complex, or a contract-shaping call): what users need and how comparable products solve it; it grounds your defaults.
 3. **Design** (standard and complex): the contract delta: what changes, the single owner of each new state, invariants, scenarios including failure paths, and what goes away. Every premise proven. Add an evidence row per scenario. Complex: two subagents design independently; choose with reasons, logged.
 4. **Critique** (standard and complex): a fresh subagent gets the story, design, and evidence paths only, and checks that premises are proven, every new piece has a reader, no agent made a product call, and every failure scenario has an evidence row. At most two revision rounds; leftover concerns are listed, not blocking.
@@ -68,6 +68,8 @@ Plan `evidence.md` in step 1, from the claim, not the code. Use the repo's evide
 Each row names its exact command, spec, or device steps. Fixtures come from the real system, never hand-written. When the kit can't produce a row (no capture tool, no device), do the lightest honest version, mark what it can't show, and file the missing capability as a follow-up.
 
 ## Asking the human
+
+The human is asked product calls and nothing else. Everything the code, the history, a run, or your judgment can settle is yours (which approach, who does the work, adopt or rewrite, fold or follow up): decide, log it as a ruling, and go on. If you would offer options with one marked recommended, you have already decided. A real block (access, credentials, hardware) is reported, not asked.
 
 Send one message with every open question, each with its options, the numbers that matter (size against the base, who is affected), your recommended default, and what you do meanwhile. Use the channel `ASTACK.md` names, else chat. Contract-shaping calls wait for the answer; the rest proceed on their defaults. Log each answer in the story as a ruling.
 
