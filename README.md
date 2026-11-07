@@ -21,21 +21,31 @@ Everything project-specific lives in the repo's `ASTACK.md`; the skills stay gen
 
 ## Using it in a project
 
-Each project gets an astack workspace, created by `astack-init` from an empty folder:
+Each project gets an astack workspace beside your code:
 
 ```
-~/Dev/<project>.astack/        sessions start here
+<project>.astack/              sessions start here
 ├── ASTACK.md                  project facts (tracked)
-├── AGENTS.md, CLAUDE.md       points agents at ASTACK.md (tracked)
-├── .claude/skills/astack-*    links to these skills
+├── AGENTS.md                  points agents at ASTACK.md (tracked)
+├── skills-lock.json           installed skill versions (tracked)
+├── .agents/, .claude/         the installed skills
 ├── repo/                      the agents' own clone, kept on the base branch
 ├── wt/<id>/                   one worktree per task
 ├── stories/<id>/              story.md, evidence.md, evidence/
 └── lessons/                   one fact per file (tracked)
 ```
 
-Your own checkout of the project is never touched. Everything sits under one root, so no harness needs extra folder permissions; `repo/` and the worktrees are siblings, so test runners and bundlers in one never scan another. Nothing is added to the project repo itself.
+Your own checkout of the project is never touched, and nothing is added to the project repo. Everything sits under one root, so no harness needs extra folder permissions; `repo/` and the worktrees are siblings, so test runners and bundlers in one never scan another.
 
-Start: make the folder, open your agent there, and run `astack-init <clone URL>`. Then review `ASTACK.md` and deliver with `astack-deliver <issue or description>`.
+## Install and start
 
-A project that outgrows this (a PM across parallel tasks, shared devices, guard hooks, its own review history) grows the workspace into a full control plane (guards, roles, a PM), as PocketPal's dev team does.
+```bash
+mkdir <project>.astack && cd <project>.astack
+npx skills add a-ghorbani/astack -a claude-code codex opencode pi   # project scope: this workspace only
+```
+
+Open your agent in that folder and run `astack-init <clone URL>`; review `ASTACK.md` and its questions; then `astack-deliver <issue or description>`. Update the skills with `npx skills update`.
+
+Install per workspace rather than globally (`-g`): globally, astack's skills would compete with the delivery and review skills of projects that have their own workflow.
+
+A project that outgrows this (a PM across parallel tasks, shared devices, guard hooks, its own review history) grows the workspace into a full control plane with guards, roles, and a PM.

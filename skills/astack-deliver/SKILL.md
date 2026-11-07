@@ -1,6 +1,6 @@
 ---
 name: astack-deliver
-description: Deliver one change in any repo from request to a review-ready PR with evidence receipts and independent review, stopping only for real product calls or real blocks. Use for "deliver / fix / implement <issue, ticket, or description>". Runs from the project's astack workspace (the folder with ASTACK.md); run astack-init first when there is none.
+description: Deliver one change from request to a review-ready PR with evidence receipts and independent review, stopping only for real product calls or real blocks. Use inside an astack workspace (a folder with ASTACK.md) for "deliver / fix / implement <issue or description>"; a repo with its own delivery workflow uses that instead.
 ---
 
 # Deliver

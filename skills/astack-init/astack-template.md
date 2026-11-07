@@ -69,7 +69,7 @@ Missing: <kinds this repo can't produce yet; the proposals go in the questions>
 ## Tracker and questions
 
 - File bugs: <where and how>
-- Ask the human: <channel, e.g. agistry `operator`, else chat>
+- Ask the human: <channel, e.g. Slack or a message bus, else chat>
 
 ## Knowledge
 

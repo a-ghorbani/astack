@@ -1,19 +1,18 @@
 ---
 name: astack-init
-description: Set up an astack workspace for a project (its own clone in repo/, worktree, story, and lesson folders, skill links), then read the repo and write ASTACK.md (what it ships and to whom, commands, done checks, risk table, evidence kit, systems, boundaries, conventions) for the human to confirm. Run once per project, or to refresh ASTACK.md.
+description: Set up an astack workspace for a project (its own clone in repo/, worktree, story, and lesson folders), then read the repo and write ASTACK.md (what it ships and to whom, commands, done checks, risk table, evidence kit, systems, boundaries, conventions) for the human to confirm. Run once per project, or to refresh ASTACK.md.
 ---
 
 # Init
 
 ## Workspace
 
-Run from an empty folder, by default `~/Dev/<project>.astack/` (or the one the human names); the human's own checkout of the project is never touched. Create:
+Run from the workspace folder, by convention `<project>.astack/` beside where the human keeps code; it is empty apart from the installed skills. The human's own checkout of the project is never touched. Create:
 
 - `repo/`: `git clone <url> repo`, on the base branch.
 - `wt/`, `stories/`, `lessons/`.
-- Skill links: `.claude/skills/astack-*` pointing at the astack skills (other harnesses: their project skills folder).
-- `AGENTS.md`, three lines: this is the astack workspace for `<project>`; read `ASTACK.md`; the code is in `repo/` and every task works in `wt/<id>` (`astack-deliver`, Workspace). Link `CLAUDE.md` to it.
-- `git init` with a `.gitignore` of `repo/`, `wt/`, `stories/`, `.claude/`: the workspace tracks `ASTACK.md`, `AGENTS.md`, and `lessons/`.
+- `AGENTS.md`, three lines: this is the astack workspace for `<project>`; read `ASTACK.md`; the code is in `repo/` and every task works in `wt/<id>` (`astack-deliver`, Workspace). Agents read `AGENTS.md` directly; no `CLAUDE.md` copy or link.
+- `git init` with a `.gitignore` of `repo/`, `wt/`, `stories/`, `.claude/`, `.agents/`: the workspace tracks `ASTACK.md`, `AGENTS.md`, `lessons/`, and the skills installer's `skills-lock.json`.
 
 ## ASTACK.md
 
@@ -40,7 +39,7 @@ When listing files, exclude `node_modules`, `Pods`, build output, and agent work
 - **Worktree setup:** what a fresh worktree needs before it builds: install, generated files, and local config files, by name, with how they get there (a copy command the human approves; never read their contents).
 - **Done means:** checks on every PR; path-triggered or manual checks and when they apply; bookkeeping the repo always does (version bumps, changelog, provenance tables, docs), found from commit history.
 - **Risk table:** the most valuable section. For each kind of change the repo has, the evidence that proves it, grounded in what broke before and what CI can't see (devices, real servers, consumers, store review, caches, compatibility with shipped clients). One row each: *change touches* → *evidence it needs* (source).
-- **Evidence kit:** the second most valuable section. Name the kinds by what the product outputs: UI gets screenshots and recordings; audio gets audio files, recordings, or signal checks; services get request and response logs; timing gets timelines and traces; plus tests and mutation, e2e, measurements, devices and real systems, CI artifacts. For each, how to produce it in this repo: the command or steps, how to build the base next to the branch on the same device, how to find the specs that drive a surface, the metric, statistic, run count, and thresholds (from the repo's docs and past PRs; none → propose), and where each media type is hosted so a PR shows it (images and video render inline in a GitHub comment; other files are linked). Prove the key ones by running them when that is cheap and safe; otherwise record what running takes, and cite a past PR that ran it. Where a kind is missing (a UI with no way to capture it, a perf claim with no benchmark), say so and propose the smallest way to add it, as a question. Risk rows name the kit entries they need.
+- **Evidence kit:** the second most valuable section. Name the kinds by what the product outputs: UI gets screenshots and recordings; audio gets audio files, recordings, or signal checks; services get request and response logs; timing gets timelines and traces; plus tests and mutation, e2e, measurements, devices and real systems, CI artifacts. For each, how to produce it in this repo: the command or steps, how to build the base next to the branch on the same device, how to find the specs that drive a surface, the metric, statistic, run count, and thresholds (from the repo's docs and past PRs; none → propose), and where each media type is hosted so a PR shows it (images and video render inline in a GitHub comment; other files are linked). Prove the key ones by running them when that is cheap and safe, in a scratch worktree (`git -C repo worktree add ../wt/init-check`, removed afterwards), never in `repo/`; otherwise record what running takes, and cite a past PR that ran it. Where a kind is missing (a UI with no way to capture it, a perf claim with no benchmark), say so and propose the smallest way to add it, as a question. Risk rows name the kit entries they need.
 - **Systems:** real systems the code depends on, how an agent reaches them (simulator, device, sandbox, live), what tests fake, or "live only".
 - **Boundaries:** public vs private; files never read; files never touched: generated (confirm with `git log -- <file>`: bot or tool commits only), vendored, submodules, and frozen by policy; who merges and releases (from `mergedBy` and release commits).
 - **Conventions:** commit and PR format, PR body shape (from recent PRs when there is no template), branch naming.

@@ -1,6 +1,6 @@
 ---
 name: astack-review
-description: Independent code review of a diff, branch, or PR in any repo, through explicit lenses, with every finding tied to a concrete failure scenario and refutation-tested before it is kept. Use for "review PR #n / this branch / this diff", and from astack-deliver.
+description: Independent code review of a diff, branch, or PR in any repo, through explicit lenses, with every finding tied to a concrete failure scenario and refutation-tested before it is kept. Use for "review PR #n / this branch / this diff" and from astack-deliver; a repo with its own review skill uses that instead.
 ---
 
 # Review
