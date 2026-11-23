@@ -46,7 +46,7 @@ npx skills add a-ghorbani/astack -a claude-code codex opencode pi   # project sc
 
 Open your agent in that folder and run `astack-init <clone URL>`; review `ASTACK.md` and its questions; then `astack-deliver <issue or description>`. Update the skills with `npx skills update`.
 
-Mastra Code reads the same `.agents/skills/` and `AGENTS.md`, so the install above covers it. Its subagents are off by default and critique and review need them: run `/subagents`, choose "Enable subagents", and restart.
+Mastra Code reads the same `.agents/skills/` and `AGENTS.md`, so the install above covers it. Its subagents are off by default and critique and review need them: run `/subagents`, choose "Enable subagents", then "Configure models" and pick a model you have a key for (unset, subagents fall back to an OpenAI model), and restart. These are global settings; Mastra Code has no per-workspace equivalent.
 
 Install per workspace rather than globally (`-g`): globally, astack's skills would compete with the delivery and review skills of projects that have their own workflow.
 

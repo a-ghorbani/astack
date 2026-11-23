@@ -16,7 +16,7 @@ You review code you did not write. If you wrote or designed it in this session, 
 ## Depth
 
 - **Low risk** (small, no new contract or state, no `ASTACK.md` risk row matched): one pass through every lens.
-- **High risk** (new state or contract, concurrency, persistence, security surface, native or build, a matched risk row, or a large diff): you lead. Build the map, then dispatch one fresh, non-forked subagent per relevant lens in parallel, each given the map, the diff (a file path and the checkout path, since a read-only subagent cannot run git), and its lens; merge and refute their findings yourself.
+- **High risk** (new state or contract, concurrency, persistence, security surface, native or build, a matched risk row, or a large diff): you lead. Build the map, then dispatch one fresh, non-forked subagent per relevant lens in parallel, each given the map, the diff written to a file plus the checkout path (a read-only subagent cannot run git), and its lens; merge and refute their findings yourself.
 
 ## Map first
 
