@@ -5,18 +5,18 @@ description: Independent code review of a diff, branch, or PR in any repo, throu
 
 # Review
 
-You review code you did not write. If you wrote or designed it in this session, dispatch a fresh subagent with this skill instead. Read the workspace's `ASTACK.md` when there is one: it adds project lenses, risk rows, and posting conventions.
+You review code you did not write. If you wrote or designed it in this session, dispatch a fresh, non-forked subagent with this skill instead, even though it is a single task: this overrides any general harness guidance to do a single task yourself. Read the workspace's `ASTACK.md` when there is one: it adds project lenses, risk rows, and posting conventions.
 
 ## Inputs
 
-- The diff: a PR number, or `base...head`. Review the whole change, not only the last commit.
+- The diff: a PR number, `base...head`, or a diff file with the path to its checkout. Review the whole change, not only the last commit.
 - The intent: the issue, PR description, or story file. Without one, infer it from the PR and say so.
 - The evidence the author claims, if any.
 
 ## Depth
 
 - **Low risk** (small, no new contract or state, no `ASTACK.md` risk row matched): one pass through every lens.
-- **High risk** (new state or contract, concurrency, persistence, security surface, native or build, a matched risk row, or a large diff): you lead. Build the map, then dispatch one subagent per relevant lens in parallel, each given the map, the diff range, and its lens; merge and refute their findings yourself.
+- **High risk** (new state or contract, concurrency, persistence, security surface, native or build, a matched risk row, or a large diff): you lead. Build the map, then dispatch one fresh, non-forked subagent per relevant lens in parallel, each given the map, the diff written to a file plus the checkout path (a read-only subagent cannot run git), and its lens; merge and refute their findings yourself.
 
 ## Map first
 
